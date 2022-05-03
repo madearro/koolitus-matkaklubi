@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <%- include ("../partials/header.ejs") %>
 </head>
 
 <body>
-
-  <%- include ("../partials/nav.ejs") %>
-
-<div> Siin on kontakt</div>
+  <div class="container-fluid pais-sektsioon">
+    <%- include ("../partials/nav.ejs") %>
+      <div class="container-fluid kontaktiosa">
+        <label for="name" class="form-label">Nimi</label>
+        <input id="name" class="form-control" type="text" placeholder="Eesnimi Perekonnanimi">
+        <label for="email" class="form-label">E-mail</label>
+        <input id="email" class="form-control" type="email" placeholder="Sinu mailiaadress">
+        <label for="message" class="form-label">Sõnum</label>
+        <textarea id="sonum" class="form-control" placeholder="Kirjuta siia oma sõnum"></textarea>
+        <button id="saada" class="btn btn-light">Saada sõnum</button>
+      </div>
+  </div>
+  <div> Siin on kontakt</div>
+  <script src="/scripts/contact.js"></script>
 
 </body>
+
 </html>

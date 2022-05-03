@@ -1,201 +1,239 @@
+html,
 body {
-  font-family: 'Montserrat', sans-serif;
-  overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
 }
 
 .pais-sektsioon {
-  background-image: url('assets/hills.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  padding: 37px 72px 140px;
-  margin-bottom: 100px;
+    background-image: url('/assets/hills.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 37px 72px 140px;
 }
 
 .pais-vasak {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
 }
 
 .logo-pealkiri {
-  font-size: 33px;
-  font-weight: 800;
-  color: #0B0B0B;
-  width: 126px;
-  word-wrap: normal;
-  line-height: 1;
-  text-transform: uppercase;
+    font-size: 33px;
+    font-weight: 800;
+    color: #0B0B0B;
+    width: 126px;
+    word-wrap: normal;
+    line-height: 1;
+    text-transform: uppercase;
 }
 
 .pais {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .pais>nav {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .pais>nav>a {
-  margin-left: 50px;
-  color: #000;
-  letter-spacing: 2.67px;
-  font-weight: 600;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-size: 16.67px;
+    margin-left: 50px;
+    color: #000;
+    letter-spacing: 2.67px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 16.67px;
 }
 
 .pais>nav>a:hover {
-  color: #444;
+    color: #444;
 }
 
 .sisu {
-  margin-top: 230px;
-  position: relative;
+    margin-top: 230px;
+    position: relative;
 }
 
 .sisu>h1,
 .sisu>h2,
 .sisu>h4 {
-  font-weight: 800;
-  text-transform: uppercase;
-  color: #0B0B0B;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #0B0B0B;
 }
 
 .sisu>h2 {
-  font-size: 39.57px;
+    font-size: 39.57px;
 }
 
 .sisu>h1 {
-  font-size: 74.39px
+    font-size: 74.39px
 }
 
 .sisu>h4 {
-  font-size: 20.83px;
-  width: 477px;
-  line-height: 29.17px;
+    font-size: 20.83px;
+    width: 477px;
+    line-height: 29.17px;
 }
 
 .sisu>button {
-  margin-top: 30px;
-  font-size: 12.5px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 2.25px;
-  color: #FFFFFF;
-  background: #0B0B0B 0% 0% no-repeat padding-box;
-  padding: 24px 22.5px 21px;
-  border: 0;
+    margin-top: 30px;
+    font-size: 12.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2.25px;
+    color: #FFFFFF;
+    background: #0B0B0B 0% 0% no-repeat padding-box;
+    padding: 24px 22.5px 21px;
+    border: 0;
 }
 
 .tydruk {
-  width: 800px;
-  height: 800px;
-  background-image: url('./assets/tydruk.png');
-  background-size: cover;
-  background-position-x: center;
-  border-radius: 50%;
-  position: absolute;
-  top: -200px;
-  right: -280px;
-  z-index: 1;
+    width: 800px;
+    height: 800px;
+    background-image: url('/assets/tydruk.png');
+    background-size: cover;
+    background-position-x: center;
+    border-radius: 50%;
+    position: absolute;
+    top: -200px;
+    right: -280px;
+    z-index: 1;
+    box-shadow: 0px 200px 160px -75px rgb(0 0 0 / 40%);
 }
-
-
 .vari {
-  width: 750px;
-  height: 90px;
-  background: transparent url('./assets/vari.png') 0% 0% no-repeat padding-box;
-  background-size: cover;
-  background-position-x: center;
-  border-radius: 50%;
-  position: absolute;
-  bottom: -350px;
-  right: -280px;
+    width: 750px;
+    height: 90px;
+    background: transparent url('/assets/vari.png') 0% 0% no-repeat padding-box;
+    background-size: cover;
+    background-position-x: center;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -350px;
+    right: -280px;
 }
 
-.keskosa {
-  padding-left: 72px;
+.kaartide-sektsioon {
+
+    margin-top: 300px;
+    margin-top: 150px;
+    padding-left: 72px;
+    margin-bottom: 200px;
 }
 
-.choose {
-  text-transform: uppercase;
-  opacity: 0.4;
-  font-size: 39.57px;
-  letter-spacing: -4px;
-  font-weight: 600;
+.pealkirjad {
+    display: flex;
+    flex-direction: column;
 }
 
-.these {
-  font-size: 54.17px;
-  width: 448px;
-  height: 124px;
-  padding-right: 34px;
-  letter-spacing: -1.08px;
-
+.pealkirjad>h4 {
+    text-transform: uppercase;
+    color: gray;
+    font-size: 50px;
+    font-weight: 600;
+    letter-spacing: -1.08px;
 }
 
-.lorem-ipsum {
-  width: 448px;
-  height: 211px;
-  padding-right: 34px;
-  padding-top: 24.48px;
-  text-align: left;
-  letter-spacing: 0px;
-  color: #3D3D3D;
-  opacity: 1;
-
+.pealkirjad>h1 {
+    letter-spacing: -1.08px;
+    color: black;
+    font-weight: 600;
+    font-size: 54px;
+    line-height: 0.9;
 }
 
-.flex {
-  display: flex;
-  position: relative;
-  margin-bottom: 62px;
+.tekst-ja-kaardid {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    line-height: 1.7;
 }
 
-img {
-  margin-left: 34px;
+.tekst {
+    letter-spacing: 0px;
+    color: #3D3D3D;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.esimene_pilt {
-  box-shadow: 20px 20px 50px lightgrey;
-
+.nooled {
+    display: flex;
+    align-items: end;
+    margin-bottom: -14px;
 }
 
-.kolmas_pilt {
-  position: absolute;
-  right: -155px;
+.nool {
+    font-size: 46px;
+    cursor: pointer;
+    margin-bottom: -13px
 }
 
-svg {
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
+.esimene-number {
+    margin-left: 10px;
+    font-size: 33px;
 }
 
-.number {
-  width: 74.83px;
-  height: 40px;
-  position: absolute;
-  left: 60px;
-  bottom: 0px;
-  font-size: 33.33px;
-
+.teine-number {
+    font-size: 21px;
+    margin-left: 5px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    color: #9A9A9A;
 }
 
-.number2 {
-  position: absolute;
-  left: 100px;
-  bottom: 0px;
-  opacity: 0.4;
+.kaardid {
+    display: flex;
+    width: auto;
+    margin-right: -100px;
 }
 
-.nool_paremale {
-  position: absolute;
-  left: 120px;
-  bottom: 0px;
-  opacity: 0.4;
+.esimene-pilt,
+.teine-pilt,
+.kolmas-pilt {
+    height: 406px;
+    width: 309px;
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: 34px;
+    box-shadow: #bbb 0px 0px 30px;
 }
+
+.esimene-pilt {
+    background-image: url('/assets/tydruk_binokkel.png');
+}
+
+.teine-pilt {
+    background-image: url('/assets/poiss_binokkel.png');
+}
+
+.kolmas-pilt {
+    background-image: url('/assets/pilt_paremal.png');
+    margin-right: -50px;
+}
+
+.kontaktiosa {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    margin-top: 80px;
+}
+
+.kontaktiosa>input,
+.kontaktiosa>textarea {
+    width: 300px;
+    margin-bottom: 15px;
+}
+
+.kontaktiosa>textarea {
+    height: 150px;
+}
+
+.kontaktiosa>button {}
