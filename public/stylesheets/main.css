@@ -104,6 +104,7 @@ body {
     z-index: 1;
     box-shadow: 0px 200px 160px -75px rgb(0 0 0 / 40%);
 }
+
 .vari {
     width: 750px;
     height: 90px;
@@ -236,4 +237,17 @@ body {
     height: 150px;
 }
 
-.kontaktiosa>button {}
+.alumine-nav {
+    background-color: rgb(249, 241, 241);
+    margin-left: 56px;
+    margin-bottom: 60px;
+    margin-right: 56px;
+    padding-top: 63.4px;
+    padding-left: 62.01px;
+    padding-bottom: 42.07px;
+    padding-right: 62.01px;
+ }
+
+.alumine-nav>.pais>nav {
+    margin-right: 56px;
+}
