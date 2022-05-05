@@ -238,7 +238,8 @@ body {
 }
 
 .alumine-nav {
-    background-color: rgb(249, 241, 241);
+    width: 95%;
+    background-color: rgb(241, 241, 241);
     margin-left: 56px;
     margin-bottom: 60px;
     margin-right: 56px;
@@ -246,8 +247,28 @@ body {
     padding-left: 62.01px;
     padding-bottom: 42.07px;
     padding-right: 62.01px;
- }
 
-.alumine-nav>.pais>nav {
-    margin-right: 56px;
+}
+
+.footer-all {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.ikoonid {
+    display: inline-block;
+    flex-direction: row;
+
+}
+
+.fa {
+    padding: 20px;
+    font-size: 40px;
+    width: 60px;
+    text-align: center;
+    text-decoration: none;
+    background: black;
+    color: white;
+    border-radius: 50%;
 }
