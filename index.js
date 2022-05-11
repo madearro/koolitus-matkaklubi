@@ -1,39 +1,57 @@
-const express = require('express')
+const express = require('express');
+const req = require('express/lib/request');
 const path = require('path')
 const PORT = process.env.PORT || 5000
 
 const matk1 = {
+  id: 0,
   title: 'Kepikõnd ümber Ülemiste järve',
   description: 'Algab 6. juunil Ülemiste parklast',
-  startsAt: 'Algus 6. juuni 2022, 10:00 hommikul',
-  endsAt: 'Lõpeb 6. juuni 14:00',
-  startingLocation: 'Järve Selveri parkla',
+  startsAt: 'Algus kl 10:00 hommikul',
+  endsAt: 'Lõpeb kl 14:00',
+  startingLocation: 'Koguneme: Ülemiste Selveri parklas',
+  locationLatitude: '59.393345',
+  locationLongitude: '24.722974',
   price: 'Hind 15€',
   imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScqSLCDS-f2ue1SPozxT8anx56fnQsD12M3A&usqp=CAU',
+  participants: [],
 };
 
 const matk2 = {
+  id: 1,
   title: 'Kõnd',
   description: 'Algab 7. juunil Magistrali parklast',
-  startsAt: 'Algus 8. juuni 2022, 11:00 hommikul',
-  endsAt: 'Lõpeb 8. juuni 15:00',
-  startingLocation: 'Magistrali parkla',
+  startsAt: 'Algus kl 11:00 hommikul',
+  endsAt: 'Lõpeb kl 15:00',
+  startingLocation: 'Koguneme: Magistrali parklas',
+  locationLatitude: '59.393345',
+  locationLongitude: '24.722974',
   price: 'Hind 20€',
-  imageUrl: '',
+  imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTue-f7qyQ0pIXq4-yFCu5uzwWvlkVelEhNsQ&usqp=CAU',
+  participants: [],
   
 };
 
 const matk3 = {
+  id: 2,
   title: 'Ujumine üle Suure väina',
-  description: 'Koguneme sadamas',
-  startsAt: 'Algus 10. juuni 2022, 12:00',
-  endsAt: 'Lõpeb 10. juuni 15:00',
-  startingLocation: 'Järve Selveri parkla',
+  description: 'Algab 10. juunil Virtsu sadamast',
+  startsAt: 'Algus kl 12:00',
+  endsAt: 'Lõpeb kl 15:00',
+  startingLocation: 'Koguneme: Järve Selveri parklas',
+  locationLatitude: '59.393345',
+  locationLongitude: '24.722974',
   price: 'Hind 10€',
   imageUrl: 'https://spordiklubi7.ee/wp-content/uploads/2019/07/Hero-img-768x432.jpg',
+  participants: [],
 };
 
 const matkad = [matk1, matk2, matk3];
+const naitaMatkaVaadet = (req, res) => {
+  console.log(req.params.matkaId);
+  const matk = matkad.find((matk) => matk.id === parseInt(req.params.matkaId))
+  return res.render('pages/trek', { matk: matk})
+}
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -41,6 +59,7 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/contact', (req, res) => res.render('pages/contact'))
+  .get('/treks/:matkaId', naitaMatkaVaadet)
   .get('/treks', (req, res) => res.render('pages/treks', { matkad: matkad}))
   .get('/news', (req, res) => res.render('pages/news'))
   .listen(PORT, () => console.log(`Listening on http://localhost:${ PORT }`))

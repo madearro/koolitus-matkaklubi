@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Matkaklubi - Matk</title>
+    <%- include ("../partials/header.ejs") %>
+        <link rel="stylesheet" href="/stylesheets/trek.css">
+</head>
+
+<body>
+    <div class="container-fluid pais-sektsioon">
+        <%- include ("../partials/nav.ejs") %>
+            <div class="matkale-registreerumine">
+                <div class="matk">
+                    <div class="matka-pealkiri">
+                        <%= matk.title %>
+                    </div>
+                    <div class="matka-kirjeldus">
+                        <%= matk.description %>
+                    </div>
+                    <div class="algab">
+                        <%= matk.startsAt %>
+                    </div>
+                    <div class="lopeb">
+                        <%= matk.endsAt %>
+                    </div>
+                    <div class="matka-asukoht">
+                        <%= matk.startingLocation %>
+                    </div>
+                    <div class="matka-hind">
+                        <%= matk.price %>
+                    </div>
+                    <div class="matka-pilt">
+                        <img src=<%=matk.imageUrl %>>
+                    </div>
+                </div>
+                <div class="vorm">
+                    <div class="vormi-pealkiri">
+                        Registreeru matkale
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Osaleja nimi</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Kalle Kask">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Emaili aadress</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1"
+                            placeholder="kalle.kask@eesti.ee">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Soovid, küsimused</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <button type="button" id="registreeru" class="btn btn-dark">Registreeru</button>
+
+
+                </div>
+            </div>
+    </div>
+    <script src="/scripts/trek.js"></script>
+</body>
+
+</html>
