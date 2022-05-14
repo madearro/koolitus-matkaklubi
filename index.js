@@ -1,5 +1,6 @@
 const express = require('express');
 const req = require('express/lib/request');
+const res = require('express/lib/response');
 const path = require('path')
 const PORT = process.env.PORT || 5000
 
@@ -42,7 +43,7 @@ const matk3 = {
   locationLatitude: '59.393345',
   locationLongitude: '24.722974',
   price: 'Hind 10€',
-  imageUrl: 'https://spordiklubi7.ee/wp-content/uploads/2019/07/Hero-img-768x432.jpg',
+  imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFpln62CJtOWmHsudPcwY_qXdgTz9QHoyRpg&usqp=CAU',
   participants: [],
 };
 
@@ -52,8 +53,16 @@ const naitaMatkaVaadet = (req, res) => {
   const matk = matkad.find((matk) => matk.id === parseInt(req.params.matkaId))
   return res.render('pages/trek', { matk: matk})
 }
+const registreeriOsaleja = (req, res) => {
+  const paringuKeha = req.body;
+  const matk = matkad.find((matk) => matk.id === parseInt(paringuKeha.matkaId));
+  matk.participants.push(paringuKeha.osaleja);
+  console.log(JSON.stringify(matkad));
+  res.json({ response: 'Töötas!' });
+}
 
 express()
+.use(express.json())
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
@@ -62,4 +71,5 @@ express()
   .get('/treks/:matkaId', naitaMatkaVaadet)
   .get('/treks', (req, res) => res.render('pages/treks', { matkad: matkad}))
   .get('/news', (req, res) => res.render('pages/news'))
+  .post('/api/register', registreeriOsaleja)
   .listen(PORT, () => console.log(`Listening on http://localhost:${ PORT }`))

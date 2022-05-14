@@ -17,16 +17,16 @@
                             <%= matkad[i].title %>
                         </div>
 
-                        <div class"kirjeldus">
+                        <div class="kirjeldus">
                             <%= matkad[i].description %>
                         </div>
-                        <div class"algab-kl">
+                        <div class="algab-kl">
                             <%= matkad[i].startsAt %>
                         </div>
-                        <div class"lõpeb-kl">
+                        <div class="lõpeb-kl">
                             <%= matkad[i].endsAt %>
                         </div>
-                        <div class"lõpeb-kl">
+                        <div class="lõpeb-kl">
                             <%= matkad[i].startingLocation %>
                         </div>
                         <div class="matka-asukoht">
@@ -34,10 +34,10 @@
                                 %>
                                 target="_blank"><%= matkad[i].locationDescription %></a>
                         </div>
-                        <div class"hind">
+                        <div class="hind">
                             <%= matkad[i].price %>
                         </div><br>
-                        <div class"pilt"><img src=<%=matkad[i].imageUrl %> width="400" heigth="350"></div><br>
+                        <div class="pilt"><img src=<%=matkad[i].imageUrl %>></div><br>
                         <a href=<%=`treks/${matkad[i].id}`%> class="btn btn-dark matkanupp">Registreeru matkale</a>
 
                     </div>

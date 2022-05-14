@@ -38,23 +38,26 @@
                     <div class="vormi-pealkiri">
                         Registreeru matkale
                     </div>
+                    <form>
                     <div class="mb-3">
                         <label for="name" class="form-label">Osaleja nimi</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Kalle Kask">
+                        <input type="text" class="form-control" id="name" placeholder="Kalle Kask">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Emaili aadress</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1"
+                        <input type="email" class="form-control" id="email"
                             placeholder="kalle.kask@eesti.ee">
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Soovid, küsimused</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" id="description" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <span id="message"></span>
                     </div>
                     <button type="button" id="registreeru" class="btn btn-dark">Registreeru</button>
-
-
                 </div>
+            </form>
             </div>
     </div>
     <script src="/scripts/trek.js"></script>
