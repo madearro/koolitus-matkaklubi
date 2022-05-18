@@ -2,16 +2,33 @@
 <html>
 
 <head>
-  <%- include ("../partials/header.ejs") %>
+    <title>Matkaklubi - Uudised</title>
+    <%- include ("../partials/header.ejs") %>
+        <link rel="stylesheet" href="/stylesheets/treks.css">
 </head>
 
 <body>
-  <div class="container-fluid pais-sektsioon">
-    <%- include ("../partials/nav.ejs") %>
-        </div>
+    <div class="container-fluid pais-sektsioon">
+        <%- include ("../partials/nav.ejs") %>
+            <div class="matkad>
+                <% for(let i=0; i < uudised.length; i++) { %>
+                    <div class="matk">
+                        <div class="pealkiri">
+                            <%= uudised[i].title %>
+                        </div>
 
-  <div> Siin on uudised</div>
+                        <div class="kirjeldus">
+                            <%= uudised[i].description %>
+                        </div>
+                        
+                        <div class="kliki">
+                        <a href=<%=`news/${uudised[i].id}`%> class="kliki">Loe edasi</a>
 
+                    </div>
+                    <% } %>
+            </div>
+    </div>
+    
 </body>
 
 </html>
