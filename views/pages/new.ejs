@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Matkaklubi - Uudis</title>
+    <%- include ("../partials/header.ejs") %>
+        <link rel="stylesheet" href="/stylesheets/news.css">
+</head>
+
+<body>
+    <div class="container-fluid pais-sektsioon">
+        <%- include ("../partials/nav.ejs") %>
+            <div class="">
+                <div class="">
+                    <div class="uudise-pealkiri">
+                        <%= uudis.title %>
+                    </div>
+                    <div class="uudise-sisu">
+                        <%= uudis.longdecription %>
+                    </div>
+                    <div class="uudise-link">
+                        <a href="<%= uudis.link %>" target="_blank" class="kliki">Loe uudist Trip.ee-st                                </a>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+    <script src="/scripts/new.js"></script>
+</body>
+
+</html>
