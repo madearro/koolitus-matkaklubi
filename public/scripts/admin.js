@@ -6,8 +6,32 @@ const detailKirjeldusElement = document.getElementById('detail-kirjeldus');
 const detailPiltElement = document.getElementById('detail-pilt');
 const detailSalvestaElement = document.getElementById('detail-salvesta');
 const detailOsalejadElement = document.getElementById('detail-osalejad');
+const lisaPealkiriElement = document.getElementById('detail-pealkiri1');
+const lisaKirjeldusElement = document.getElementById('detail-kirjeldus1');
+const lisaPiltElement = document.getElementById('detail-pilt1');
+const lisaMatkElement = document.getElementById('detail-salvesta1');
+const sonumElement = document.getElementById('message1');
+
 let matkad;
 let matk;
+
+lisaMatkElement.onclick = async () => {
+    const lisaPealkiri = lisaPealkiriElement.value;
+    const lisaKirjeldus = lisaKirjeldusElement.value;
+    const lisaPilt = lisaPiltElement.value;
+    if (lisaPealkiri === '' || lisaKirjeldus === '' || lisaPilt === '') {
+        sonumElement.innerHTML = 'Palun täida kõik väljad!'
+        sonumElement.style.color = 'red';
+        return;
+    }
+    else {
+        lisaPealkiri.value = '';
+        lisaKirjeldus.value = '';
+        lisaPilt.value = '';
+        sonumElement.innerHTML = 'Matk lisatud'
+        sonumElement.style.color = 'green';
+    }
+}
 
 const laeMatkad = async () => {
     matkadElement.innerHTML = '';
@@ -16,14 +40,15 @@ const laeMatkad = async () => {
     for (let i = 0; i < matkad.length; i++) {
         matkadElement.innerHTML += `
             <div>
-                <a href="#" onclick="kuvaMatkaDetail(${matkad[i].id})">${matkad[i].title}</a>
+                <a href="#" onclick="kuvaMatkaDetail('${matkad[i]._id}')">${matkad[i].title}</a>
             </div>
-        `;
+                    `;
     }
+
 }
 
 const kuvaMatkaDetail = (id) => {
-    matk = matkad.find((matk) => matk.id === id);
+    matk = matkad.find((matk) => matk._id === id);
     let osalejateNimed = "";
     console.log('kuva');
     for (let i = 0; i < matk.participants.length; i++) {
@@ -33,6 +58,7 @@ const kuvaMatkaDetail = (id) => {
     matkaPealkiriElement.innerHTML = matk.title;
     detailPealkiriElement.value = matk.title;
     detailKirjeldusElement.value = matk.description;
+
     detailPiltElement.value = matk.imageUrl;
     detailSalvestaElement.addEventListener("click", salvestaMatk);
     detailOsalejadElement.innerHTML = osalejateNimed;
@@ -44,7 +70,7 @@ const salvestaMatk = async () => {
     matk.imageUrl = detailPiltElement.value;
 
     try {
-        const response = await fetch(`/api/treks/${matk.id}`, {
+        const response = await fetch(`/api/treks/${matk._id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -57,7 +83,7 @@ const salvestaMatk = async () => {
         console.log(e);
     }
     await laeMatkad();
-    kuvaMatkaDetail(matk.id);
+    kuvaMatkaDetail(matk._id);
 }
 
 (async () => {

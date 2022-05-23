@@ -29,3 +29,16 @@ button {
 .osalejad {
     margin-top: 25px;
 }
+
+.lisa {
+    display: flex;
+    flex-direction: column; 
+    margin-left: 20px;
+    border-left: solid 1px gray;
+    padding-left: 20px;
+    width: 300px;
+}
+
+#detail-salvesta1 {
+    white-space: nowrap;
+}

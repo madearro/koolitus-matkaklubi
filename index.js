@@ -2,76 +2,92 @@ const express = require('express');
 const req = require('express/lib/request');
 const res = require('express/lib/response');
 const path = require('path')
-const PORT = process.env.PORT || 5000
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const PORT = process.env.PORT || 5000;
 
-const matk1 = {
-  id: 0,
-  title: 'Kepikõnd ümber Ülemiste järve',
-  description: 'Algab 6. juunil Ülemiste parklast',
-  startsAt: 'Algus kl 10:00 hommikul',
-  endsAt: 'Lõpeb kl 14:00',
-  startingLocation: 'Koguneme: Ülemiste Selveri parklas',
-  locationLatitude: '59.393345',
-  locationLongitude: '24.722974',
-  price: 'Hind 15€',
-  imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScqSLCDS-f2ue1SPozxT8anx56fnQsD12M3A&usqp=CAU',
-  participants: [],
-};
+let matkad;
 
-const matk2 = {
-  id: 1,
-  title: 'Kõnd',
-  description: 'Algab 7. juunil Magistrali parklast',
-  startsAt: 'Algus kl 11:00 hommikul',
-  endsAt: 'Lõpeb kl 15:00',
-  startingLocation: 'Koguneme: Magistrali parklas',
-  locationLatitude: '59.393345',
-  locationLongitude: '24.722974',
-  price: 'Hind 20€',
-  imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTue-f7qyQ0pIXq4-yFCu5uzwWvlkVelEhNsQ&usqp=CAU',
-  participants: [],
-  
-};
+const uri = "mongodb+srv://madearro:Booo0000@cluster0.osahg.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
-const matk3 = {
-  id: 2,
-  title: 'Ujumine üle Suure väina',
-  description: 'Algab 10. juunil Virtsu sadamast',
-  startsAt: 'Algus kl 12:00',
-  endsAt: 'Lõpeb kl 15:00',
-  startingLocation: 'Koguneme: Järve Selveri parklas',
-  locationLatitude: '59.393345',
-  locationLongitude: '24.722974',
-  price: 'Hind 10€',
-  imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFpln62CJtOWmHsudPcwY_qXdgTz9QHoyRpg&usqp=CAU',
-  participants: [],
-};
+const loeMatkadMallu = (async () => {
+try {
+  await client.connect();
+  const collection = client.db("matka-app-2203").collection("treks");
+  matkad = await collection.find().toArray();
+  console.log(matkad);
+} finally {
+  await client.close();
+}
+})()
 
-const matkad = [matk1, matk2, matk3];
-const naitaMatkaVaadet = (req, res) => {
-  console.log(req.params.matkaId);
-  const matk = matkad.find((matk) => matk.id === parseInt(req.params.matkaId))
+const naitaMatkaVaadet = async (req, res) => {
+  let matk;
+  try {
+    await client.connect();
+    const collection = client.db("matka-app-2203").collection("treks");
+    matk = await collection.findOne({ _id: new ObjectId(req.params.matkaId)});
+    console.log(matkad);
+  } finally {
+    await client.close();
+    console.log(matk);
+  }
   return res.render('pages/trek', { matk: matk})
 }
-const registreeriOsaleja = (req, res) => {
+const registreeriOsaleja = async (req, res) => {
   const paringuKeha = req.body;
-  const matk = matkad.find((matk) => matk.id === parseInt(paringuKeha.matkaId));
-  matk.participants.push(paringuKeha.osaleja);
-  console.log(JSON.stringify(matkad));
-  res.json({ response: 'Töötas!' });
+  try {
+    await client.connect();
+    const collection = client.db('matka-app-2203').collection('treks');
+    const filter = { _id: new ObjectId(paringuKeha.matkaId) };
+    const updateDoc = {
+      $push: { participants: paringuKeha.osaleja }
+    };
+    matk = await collection.updateOne(filter, updateDoc);
+    res.json({ response: 'Töötas!' });
+  } catch (error) {
+    console.log(error);
+    res.json({ response: 'Katki läks!' });
+  } finally {
+    await client.close();
+  }
 }
 
-const tagastaMatkad = (req, res) => {
-  res.json(matkad);
+const tagastaMatkad = async (req, res) => {
+  try {
+    await client.connect();
+    const collection = client.db('matka-app-2203').collection('treks');
+    const treks = await collection.find().toArray();
+    res.json(treks);
+  } catch (error) {
+    console.log(error);
+    res.json({ response: 'Katki läks!' });
+  } finally {
+    await client.close();
+  }
 }
 
-const salvestaMatk = (req, res) => {
+const salvestaMatk = async (req, res) => {
   const matkaId = req.params.matkaId;
-  let matk = matkad.find((matk) => matk.id === parseInt(matkaId));
-  matk.title = req.body.title;
-  matk.description = req.body.description;
-  matk.imageUrl = req.body.imageUrl;
-  res.json({ response: 'Töötas!' });
+  try {
+    await client.connect();
+    const collection = client.db('matka-app-2203').collection('treks');
+    const filter = { _id: new ObjectId(matkaId) };
+    const updateDoc = {
+      $set: {
+        title: req.body.title,
+        description: req.body.description,
+        imageUrl: req.body.imageUrl,
+      }
+    };
+    matk = await collection.updateOne(filter, updateDoc);
+    res.json({ response: 'Töötas!' });
+  } catch (error) {
+    console.log(error);
+    res.json({ response: 'Katki läks!' });
+  } finally {
+    await client.close();
+  }
 }
 
 const uudis1 = {
@@ -121,7 +137,7 @@ const uudis3 = {
 const uudised = [uudis1, uudis2, uudis3];
 const naitaUudiseVaadet = (req, res) => {
   console.log(req.params.uudiseId);
-  const uudis = uudised.find((uudis) => uudis.id === parseInt(req.params.uudiseId))
+  const uudis = uudised.find((uudis) => uudis._id === parseInt(req.params.uudiseId))
   console.log(uudis)
   return res.render('pages/new', { uudis: uudis })
 }
